@@ -12,7 +12,7 @@
 
 .alignleft {
 	color: white;
-	float: left;
+	align-items: left;
 }
 .alignright {
 	float: right;
