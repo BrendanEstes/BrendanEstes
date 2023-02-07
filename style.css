@@ -5,7 +5,7 @@
 
   body {
     background: black;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
   }
@@ -15,6 +15,6 @@
 	align-items: left;
 }
 .alignright {
-	color: blue;
+	color: white;
 	align-items: right;
 }
