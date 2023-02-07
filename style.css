@@ -15,5 +15,6 @@
 	align-items: left;
 }
 .alignright {
-	float: right;
+	color: blue;
+	align-items: right;
 }
