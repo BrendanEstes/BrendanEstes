@@ -1,19 +1,25 @@
     html, body {
     height: 100%;
     margin: 0;
+    background: black;
   }
 
-  body {
+.game {
     background: black;
     display: flex;
     align-items: center;
     justify-content: center;
+    clear: both;
   }
 
-.alignleft {
+header {
 	color: white;
-	float: left;
+ 	text-align: center;
+
+ background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clear: both;
 }
-.alignright {
-	float: right;
-}
+
