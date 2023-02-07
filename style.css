@@ -9,3 +9,10 @@
     align-items: center;
     justify-content: center;
   }
+
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
