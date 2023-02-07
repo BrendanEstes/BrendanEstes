@@ -3,9 +3,11 @@
     margin: 0;
   }
 
-  body {
+ /* body {*/
+
+.game {
     background: black;
-    /* display: flex; */
+    display: flex;
     align-items: center;
     justify-content: center;
   }
