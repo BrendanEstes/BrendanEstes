@@ -107,13 +107,13 @@ function loop() {
 	
 	// increases player score if ball goes past paddle of opposite player
 	if (ball.dx > 0) {
-	player1++;
-	document.getElementById("player1Score").innerHTML = player1;
+	  player1++;
+	  document.getElementById("player1Score").innerHTML = player1;
 	}
 
 	if (ball.dx < 0) {
-	player2++;
-	document.getElementById("player2Score").innerHTML = player2;
+	  player2++;
+	  document.getElementById("player2Score").innerHTML = player2;
 	}
 
 
@@ -155,17 +155,26 @@ function loop() {
   }
 }
 
+// make right paddle move by itself like a computer player
+if (rightPaddle.y < ball.y) {
+  rightPaddle.dy = -paddleSpeed;
+}
+if (rightPaddle.y > ball.y) {
+  rightPaddle.dy = paddleSpeed;
+}
+
+
 // listen to keyboard events to move the paddles
 document.addEventListener('keydown', function(e) {
 
   // up arrow key
-  if (e.which === 38) {
-    rightPaddle.dy = -paddleSpeed;
-  }
-  // down arrow key
-  else if (e.which === 40) {
-    rightPaddle.dy = paddleSpeed;
-  }
+  // if (e.which === 38) {
+  //   rightPaddle.dy = -paddleSpeed;
+  // }
+  // // down arrow key
+  // else if (e.which === 40) {
+  //   rightPaddle.dy = paddleSpeed;
+  // }
 
   // w key
   if (e.which === 87) {
@@ -179,9 +188,9 @@ document.addEventListener('keydown', function(e) {
 
 // listen to keyboard events to stop the paddle if key is released
 document.addEventListener('keyup', function(e) {
-  if (e.which === 38 || e.which === 40) {
-    rightPaddle.dy = 0;
-  }
+  // if (e.which === 38 || e.which === 40) {
+  //   rightPaddle.dy = 0;
+  // }
 
   if (e.which === 83 || e.which === 87) {
     leftPaddle.dy = 0;
