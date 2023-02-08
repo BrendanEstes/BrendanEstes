@@ -176,6 +176,14 @@ function loop() {
     divElem.appendChild(button);
     document.body.appendChild(divElem);
 
+    // reset ball and paddle position
+    ball.x = canvas.width / 2;
+    ball.dx = 0;
+    ball.y = canvas.height / 2;
+    ball.dy = 0;
+    leftPaddle.y = canvas.height / 2;
+    rightPaddle.y = canvas.height / 2;
+
     button.addEventListener('click', () => { // reset the game
       while (gamereset == false) {
         // clear game over text
