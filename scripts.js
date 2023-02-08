@@ -7,6 +7,8 @@ const maxPaddleY = canvas.height - grid - paddleHeight;
 var paddleSpeed = 7;
 var ballSpeed = 5;
 
+context.font = "100px serif";
+
 //set and display initial score as 0
 var player1 = 0;
 var player2 = 0;
@@ -107,13 +109,13 @@ function loop() {
 	
 	// increases player score if ball goes past paddle of opposite player
 	if (ball.dx > 0) {
-	player1++;
-	document.getElementById("player1Score").innerHTML = player1;
+	  player1++;
+	  document.getElementById("player1Score").innerHTML = player1;
 	}
 
 	if (ball.dx < 0) {
-	player2++;
-	document.getElementById("player2Score").innerHTML = player2;
+	  player2++;
+	  document.getElementById("player2Score").innerHTML = player2;
 	}
 
 
@@ -153,19 +155,74 @@ function loop() {
   for (let i = grid; i < canvas.height - grid; i += grid * 2) {
     context.fillRect(canvas.width / 2 - grid / 2, i, grid, grid);
   }
-}
+
+
+  // make right paddle move by itself like a computer player
+  if (rightPaddle.y != ball.y) { // move paddle to the location of the ball
+    rightPaddle.dy += ball.dy;
+  }
+ 
+  // end the game, display play again button
+  if (player1 >= 7 || player2 >= 7) {
+    gamereset = false;
+    context.fillText("Game  Over", (canvas.width / 2 - grid / 2) - 255,(canvas.height / 2));
+
+    const button = document.createElement('button');
+    button.innerText = 'Click To Play Again';
+    
+    // make button appear
+    var divElem = document.createElement('div');
+    divElem.setAttribute('style', 'text-align:center;');
+    divElem.appendChild(button);
+    document.body.appendChild(divElem);
+
+    // reset ball and paddle position
+    ball.x = canvas.width / 2;
+    ball.dx = 0;
+    ball.y = canvas.height / 2;
+    ball.dy = 0;
+    leftPaddle.y = canvas.height / 2;
+    rightPaddle.y = canvas.height / 2;
+
+    button.addEventListener('click', () => { // reset the game
+      while (gamereset == false) {
+        // clear game over text
+        context.clearRect ( (canvas.width / 2 - grid / 2) - 250, (canvas.height / 2) , 400 , 100 );
+        // set scores back to zero
+        player1 = 0;
+        player2 = 0;
+        // reset ball and paddle position
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        leftPaddle.y = canvas.height / 2;
+        rightPaddle.y = canvas.height / 2;
+        ball.dx = ballSpeed;
+        ball.dy = -ballSpeed;
+
+        gamereset = true;
+      }
+     
+    })
+    
+
+    
+  }
+} // end of loop function
+
+
+
 
 // listen to keyboard events to move the paddles
 document.addEventListener('keydown', function(e) {
 
   // up arrow key
-  if (e.which === 38) {
-    rightPaddle.dy = -paddleSpeed;
-  }
-  // down arrow key
-  else if (e.which === 40) {
-    rightPaddle.dy = paddleSpeed;
-  }
+  // if (e.which === 38) {
+  //   rightPaddle.dy = -paddleSpeed;
+  // }
+  // // down arrow key
+  // else if (e.which === 40) {
+  //   rightPaddle.dy = paddleSpeed;
+  // }
 
   // w key
   if (e.which === 87) {
@@ -179,14 +236,15 @@ document.addEventListener('keydown', function(e) {
 
 // listen to keyboard events to stop the paddle if key is released
 document.addEventListener('keyup', function(e) {
-  if (e.which === 38 || e.which === 40) {
-    rightPaddle.dy = 0;
-  }
+  // if (e.which === 38 || e.which === 40) {
+  //   rightPaddle.dy = 0;
+  // }
 
   if (e.which === 83 || e.which === 87) {
     leftPaddle.dy = 0;
   }
 });
+
 
 // start the game
 requestAnimationFrame(loop);
