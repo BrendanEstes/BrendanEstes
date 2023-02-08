@@ -162,7 +162,26 @@ function loop() {
     rightPaddle.dy += ball.dy;
   }
  
-  
+  // end the game, display play again button
+  if (player1 >= 7 || player2 >= 7) {
+    context.fillText("Game  Over", (canvas.width / 2 - grid / 2) - 250,(canvas.height / 2));
+
+    const button = document.createElement('button');
+    button.innerText = 'Click To Play Again';
+
+    button.addEventListener('click', () => { // reset the game
+      
+
+      // clear game over text
+      context.clearRect ( (canvas.width / 2 - grid / 2) - 250, (canvas.height / 2) , 400 , 100 );
+    })
+
+    // make button appear
+    var divElem = document.createElement('div');
+    divElem.setAttribute('style', 'text-align:center;');
+    divElem.appendChild(button);
+    document.body.appendChild(divElem);
+  }
 } // end of loop function
 
 
@@ -200,23 +219,6 @@ document.addEventListener('keyup', function(e) {
     leftPaddle.dy = 0;
   }
 });
-
-// end the game, display play again button
-if (player1 >= 7 || player2 >= 7) {
-  context.fillText("Game  Over", (canvas.width / 2 - grid / 2) - 250,(canvas.height / 2))
-
-  const button = document.createElement('button');
-  button.innerText = 'Click To Play Again';
-
-  button.addEventListener('click', () => { // reset the game
-    requestAnimationFrame(loop);
-
-    // clear game over text
-    context.clearRect ( (canvas.width / 2 - grid / 2) - 250, (canvas.height / 2) , 400 , 100 );
-  })
-
-  document.body.appendChild(button)
-}
 
 
 // start the game
