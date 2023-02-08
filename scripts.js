@@ -5,7 +5,7 @@ const paddleHeight = grid * 5; // 80
 const maxPaddleY = canvas.height - grid - paddleHeight;
 
 var paddleSpeed = 7;
-var ballSpeed = 6;
+var ballSpeed = 15;
 
 //set and display initial score as 0
 var player1 = 0;
