@@ -176,10 +176,8 @@ function loop() {
     divElem.appendChild(button);
     document.body.appendChild(divElem);
 
-    while (gamereset != true) {
-      button.addEventListener('click', () => { // reset the game
-        gamereset = true;
-
+    button.addEventListener('click', () => { // reset the game
+      while (gamereset == false) {
         // clear game over text
         context.clearRect ( (canvas.width / 2 - grid / 2) - 250, (canvas.height / 2) , 400 , 100 );
         // set scores back to zero
@@ -190,8 +188,12 @@ function loop() {
         ball.y = canvas.height / 2;
         leftPaddle.y = canvas.height / 2;
         rightPaddle.y = canvas.height / 2;
-      })
-    }
+
+        gamereset = true;
+      }
+     
+    })
+    
 
     
   }
