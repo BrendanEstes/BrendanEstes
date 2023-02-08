@@ -156,11 +156,11 @@ function loop() {
 }
 
 // make right paddle move by itself like a computer player
-if (rightPaddle.y < ball.y) {
-  rightPaddle.dy = paddleSpeed;
-}
-if (rightPaddle.y > ball.y) {
+while (rightPaddle.y < ball.y) {
   rightPaddle.dy = -paddleSpeed;
+}
+while (rightPaddle.y > ball.y) {
+  rightPaddle.dy = paddleSpeed;
 }
 
 
