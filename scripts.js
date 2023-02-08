@@ -7,6 +7,8 @@ const maxPaddleY = canvas.height - grid - paddleHeight;
 var paddleSpeed = 7;
 var ballSpeed = 5;
 
+context.font = "100px serif";
+
 //set and display initial score as 0
 var player1 = 0;
 var player2 = 0;
@@ -162,8 +164,25 @@ function loop() {
   else if (rightPaddle.y > ball.y) { // move paddle down if it's above the ball
     rightPaddle.dy = paddleSpeed;
   }
+
+
+  // end game if one side's score reaches 7
+  if (player1 >= 7 || player2 >= 7) {
+    context.fillText("Game Over", (canvas.width / 2 - grid / 2),(canvas.height / 2 - paddleHeight / 2))
+    
+  }
+ 
   
+} // end of loop function
+
+// make right paddle move by itself like a computer player
+if (rightPaddle.y > ball.y) { // move paddle down if it's above the ball
+  rightPaddle.dy = paddleSpeed;
 }
+else if (rightPaddle.y < ball.y) { // move paddle up if it's below the ball
+  rightPaddle.dy = -paddleSpeed;
+}
+
 
 // listen to keyboard events to move the paddles
 document.addEventListener('keydown', function(e) {
