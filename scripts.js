@@ -166,7 +166,7 @@ function loop() {
 
   // end game if one side's score reaches 7
   if (player1 >= 7 || player2 >= 7) {
-    context.fillText("Game    Over", (canvas.width / 2 - grid / 2) - 250,(canvas.height / 2))
+    context.fillText("Game Over", (canvas.width / 2 - grid / 2) - 250,(canvas.height / 2))
     cancelAnimationFrame(loop);
   }
  
@@ -208,6 +208,20 @@ document.addEventListener('keyup', function(e) {
     leftPaddle.dy = 0;
   }
 });
+
+// end the game, display play again button
+if (player1 >= 7 || player2 >= 7) {
+  cancelAnimationFrame(loop);
+  const button = document.createElement('button');
+  button.innerText = 'Click To Play Again';
+
+  button.addEventListener('click', () => { // reset the game
+    requestAnimationFrame(loop);
+  })
+
+  document.body.appendChild(button)
+}
+
 
 // start the game
 requestAnimationFrame(loop);
