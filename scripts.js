@@ -158,18 +158,16 @@ function loop() {
 
 
   // make right paddle move by itself like a computer player
-  if (rightPaddle.y < ball.y) { // move paddle up if it's below the ball
+  if (rightPaddle.y != ball.y) { // move paddle to the location of the ball
     rightPaddle.dy += ball.dy;
   }
-  if (rightPaddle.y > ball.y) { // move paddle down if it's above the ball
-    rightPaddle.dy -= ball.dy;
-  }
+
 
 
   // end game if one side's score reaches 7
   if (player1 >= 7 || player2 >= 7) {
-    context.fillText("Game Over", (canvas.width / 2 - grid / 2) - 400,(canvas.height / 2))
-
+    context.fillText("Game    Over", (canvas.width / 2 - grid / 2) - 250,(canvas.height / 2))
+    cancelAnimationFrame(loop);
   }
  
   
