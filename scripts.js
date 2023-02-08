@@ -164,23 +164,36 @@ function loop() {
  
   // end the game, display play again button
   if (player1 >= 7 || player2 >= 7) {
-    context.fillText("Game  Over", (canvas.width / 2 - grid / 2) - 250,(canvas.height / 2));
+    gamereset = false;
+    context.fillText("Game  Over", (canvas.width / 2 - grid / 2) - 255,(canvas.height / 2));
 
     const button = document.createElement('button');
     button.innerText = 'Click To Play Again';
-
-    button.addEventListener('click', () => { // reset the game
-      
-
-      // clear game over text
-      context.clearRect ( (canvas.width / 2 - grid / 2) - 250, (canvas.height / 2) , 400 , 100 );
-    })
-
+    
     // make button appear
     var divElem = document.createElement('div');
     divElem.setAttribute('style', 'text-align:center;');
     divElem.appendChild(button);
     document.body.appendChild(divElem);
+
+    while (gamereset != true) {
+      button.addEventListener('click', () => { // reset the game
+        gamereset = true;
+
+        // clear game over text
+        context.clearRect ( (canvas.width / 2 - grid / 2) - 250, (canvas.height / 2) , 400 , 100 );
+        // set scores back to zero
+        player1 = 0;
+        player2 = 0;
+        // reset ball and paddle position
+        ball.x = canvas.width / 2;
+        ball.y = canvas.height / 2;
+        leftPaddle.y = canvas.height / 2;
+        rightPaddle.y = canvas.height / 2;
+      })
+    }
+
+    
   }
 } // end of loop function
 
