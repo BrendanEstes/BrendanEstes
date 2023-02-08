@@ -196,6 +196,8 @@ function loop() {
         ball.y = canvas.height / 2;
         leftPaddle.y = canvas.height / 2;
         rightPaddle.y = canvas.height / 2;
+        ball.dx = ballSpeed;
+        ball.dy = -ballSpeed;
 
         gamereset = true;
       }
