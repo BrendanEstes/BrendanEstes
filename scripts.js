@@ -153,16 +153,17 @@ function loop() {
   for (let i = grid; i < canvas.height - grid; i += grid * 2) {
     context.fillRect(canvas.width / 2 - grid / 2, i, grid, grid);
   }
-}
 
-// make right paddle move by itself like a computer player
-if (rightPaddle.y < ball.y) { // move paddle up if it's below the ball
-  rightPaddle.dy = -paddleSpeed;
-}
-else if (rightPaddle.y > ball.y) { // move paddle down if it's above the ball
-  rightPaddle.dy = paddleSpeed;
-}
 
+  // make right paddle move by itself like a computer player
+  if (rightPaddle.y < ball.y) { // move paddle up if it's below the ball
+    rightPaddle.dy = -paddleSpeed;
+  }
+  else if (rightPaddle.y > ball.y) { // move paddle down if it's above the ball
+    rightPaddle.dy = paddleSpeed;
+  }
+  
+}
 
 // listen to keyboard events to move the paddles
 document.addEventListener('keydown', function(e) {
