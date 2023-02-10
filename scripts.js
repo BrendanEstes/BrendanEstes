@@ -8,6 +8,7 @@ var paddleSpeed = 7;
 var ballSpeed = 5;
 
 context.font = "100px serif";
+var butncnt = 0;
 
 //set and display initial score as 0
 var player1 = 0;
@@ -160,6 +161,7 @@ function loop() {
   // make right paddle move by itself like a computer player
   if (rightPaddle.y != ball.y) { // move paddle to the location of the ball
     rightPaddle.dy += ball.dy;
+    rightPaddle.y = ball.y + (rightPaddle.height / 4);
   }
  
   // end the game, display play again button
@@ -168,13 +170,18 @@ function loop() {
     context.fillText("Game  Over", (canvas.width / 2 - grid / 2) - 255,(canvas.height / 2));
 
     const button = document.createElement('button');
+    button.id = "button-1";
     button.innerText = 'Click To Play Again';
     
     // make button appear
-    var divElem = document.createElement('div');
-    divElem.setAttribute('style', 'text-align:center;');
-    divElem.appendChild(button);
-    document.body.appendChild(divElem);
+    if (butncnt == 0) {
+      var divElem = document.createElement('div');
+      divElem.setAttribute('style', 'text-align:center;');
+      divElem.appendChild(button);
+      document.body.appendChild(divElem);
+      butncnt += 1
+    }
+    
 
     // reset ball and paddle position
     ball.x = canvas.width / 2;
@@ -191,6 +198,8 @@ function loop() {
         // set scores back to zero
         player1 = 0;
         player2 = 0;
+        document.getElementById("player1Score").innerHTML = player1;
+        document.getElementById("player2Score").innerHTML = player2;
         // reset ball and paddle position
         ball.x = canvas.width / 2;
         ball.y = canvas.height / 2;
@@ -200,6 +209,10 @@ function loop() {
         ball.dy = -ballSpeed;
 
         gamereset = true;
+
+        // remove button from screen when playing again
+        document.getElementById("button-1").remove();
+        butncnt = 0;
       }
      
     })
