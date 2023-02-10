@@ -161,7 +161,7 @@ function loop() {
   // make right paddle move by itself like a computer player
   if (rightPaddle.y != ball.y) { // move paddle to the location of the ball
     rightPaddle.dy += ball.dy;
-    rightPaddle.y = ball.y;
+    rightPaddle.y = ball.y + (rightPaddle.height / 2);
   }
  
   // end the game, display play again button
