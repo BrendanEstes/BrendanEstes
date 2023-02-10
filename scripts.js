@@ -161,6 +161,7 @@ function loop() {
   // make right paddle move by itself like a computer player
   if (rightPaddle.y != ball.y) { // move paddle to the location of the ball
     rightPaddle.dy += ball.dy;
+    rightPaddle.y = ball.y;
   }
  
   // end the game, display play again button
@@ -197,6 +198,8 @@ function loop() {
         // set scores back to zero
         player1 = 0;
         player2 = 0;
+        document.getElementById("player1Score").innerHTML = player1;
+        document.getElementById("player2Score").innerHTML = player2;
         // reset ball and paddle position
         ball.x = canvas.width / 2;
         ball.y = canvas.height / 2;
