@@ -173,7 +173,7 @@ function loop() {
     button.innerText = 'Click To Play Again';
     
     // make button appear
-    if (butncnt = 0) {
+    if (butncnt == 0) {
       var divElem = document.createElement('div');
       divElem.setAttribute('style', 'text-align:center;');
       divElem.appendChild(button);
